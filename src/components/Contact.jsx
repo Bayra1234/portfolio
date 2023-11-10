@@ -22,7 +22,7 @@ const Contact = () => {
     <div id="contact" className="aboutme">
       <p className="aboutHeader ">Contact</p>
 
-      <div className="lg:mt-[50px]">
+      <div className="md:mt-[40px] lg:mt-[50px]">
         <div className="flex justify-between items-center md:flex-col md:justify-start md:items-start lg:justify-between lg:items-center lg:flex-row flex-col ">
           <form className="relative" onSubmit={formik.handleSubmit}>
             <div className="grid grid-cols-2 gap-x-[12px] lg:gap-x-[16px] mb-[16px] lg:mb-[16px]">

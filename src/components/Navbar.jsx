@@ -7,7 +7,7 @@ const Navbar = () => {
         </a>
         <ul>
           <li className="cta">
-            <a href="" className="hover-underline-animation">
+            <a href="#" className="hover-underline-animation">
               Home
             </a>
           </li>
@@ -17,7 +17,7 @@ const Navbar = () => {
             </a>
           </li>
           <li className="cta">
-            <a href="" className="hover-underline-animation">
+            <a href="#skills" className="hover-underline-animation">
               Skills
             </a>
           </li>

@@ -11,7 +11,7 @@ const Works = () => {
       imagePath:
         "https://images.pexels.com/photos/3536276/pexels-photo-3536276.jpeg?auto=compress&cs=tinysrgb&w=600",
       techStack: "HTMl CSS JavaScript React",
-      title: "Project 1",
+      title: "Swiggy clone",
       dec: "Server hosting",
     },
     {
@@ -42,24 +42,25 @@ const Works = () => {
     <div className="workssection" id="works">
       {" "}
       <p className="aboutHeader ">Works</p>
-      <div className="grid-layout lg:mt-[50px]">
+      <div className="grid-layout md:mt-[40px] lg:mt-[50px]">
         {loadMore
           ? projectData.map((item, index) => {
               return (
                 <div key={index} className="project-box">
-                  <div className="overflow-hidden">
+                  <div className="overflow-hidden relative">
                     <img
                       className="project_image"
                       src={item.imagePath}
                       alt="..."
                     />
                   </div>
+
                   {/* <p className="tech-stack-text">{item.techStack || "-"}</p> */}
-                  {/* <div className="project-content">
+                  <div className="project-content">
                     <p className="project-title">{item.title || "-"}</p>
                     <p className="project-sub-text">{item.dec || "-"}</p>
                     <a className="live-btn">{`Live <~>`}</a>
-                  </div> */}
+                  </div>
                 </div>
               );
             })
@@ -74,12 +75,15 @@ const Works = () => {
                         alt="..."
                       />
                     </div>
-                    {/* <p className="tech-stack-text">{item.techStack || "-"}</p>
+                    <p className="tech-stack-text">{item.techStack || "-"}</p>
                     <div className="project-content">
                       <p className="project-title">{item.title || "-"}</p>
-                      <p className="project-sub-text">{item.dec || "-"}</p>
-                      <a className="live-btn">{`Live <~>`}</a>
-                    </div> */}
+                      {/* <p className="project-sub-text">{item.dec || "-"}</p> */}
+                      <div className="flex justify-between items-center w-full gap-[25px]">
+                        <button className="live-btn">Go live</button>
+                        <button className="live-btn">github</button>
+                      </div>
+                    </div>
                   </div>
                 );
               }

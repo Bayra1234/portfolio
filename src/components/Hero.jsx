@@ -7,9 +7,11 @@ const Hero = () => {
           I craft responsive web application where technologies meet creativity.
           I am dedicated to transforming your digital vision into a reality.
         </p>
+        {/* desktop */}
         <div className=" heroicons">
           <a href="mailto:sharan.kundapur@gmail.com" target="_blank">
             <svg
+            className="hero1"
               xmlns="http://www.w3.org/2000/svg"
               width="32"
               height="32"
@@ -24,6 +26,7 @@ const Hero = () => {
           </a>
           <a target="_blank" href="https://www.linkedin.com/in/sharan-js">
             <svg
+              className="hero2"
               xmlns="http://www.w3.org/2000/svg"
               width="22"
               height="22"
@@ -38,6 +41,7 @@ const Hero = () => {
           </a>
           <a href="https://wa.me/919380393651/?text=Hi Sharan," target="_blank">
             <svg
+              className="hero3"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"

@@ -35,7 +35,7 @@ const Skills = () => {
     {
       id: 1,
       color: "#FFFFFF",
-      skill: "CSS/ Bootstrap/ tailwind CSS",
+      skill: "CSS/ Bootstrap/ tailwind CSS/ Material UI",
       src: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +50,7 @@ const Skills = () => {
     {
       id: 2,
       color: "#FFFFFF",
-      skill: "javaScript",
+      skill: "JavaScript",
       src: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +70,7 @@ const Skills = () => {
     },
     {
       id: 3,
-      skill: "typeScript",
+      skill: "TypeScript",
       color: "#FFFFFF",
       src: (
         <svg
@@ -137,7 +137,7 @@ const Skills = () => {
     {
       id: 7,
       color: "#FFFFFF",
-      skill: "Git",
+      skill: "Git/ Github",
       src: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +154,7 @@ const Skills = () => {
 
   const [modal, setModal] = useState({ active: false, index: 0 });
   return (
-    <div id="aboutme" className="aboutme">
+    <div id="skills" className="aboutme">
       <p className="aboutHeader ">Skills</p>
 
       <main className="main lg:mt-[50px]">

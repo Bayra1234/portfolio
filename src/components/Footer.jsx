@@ -80,7 +80,7 @@ const Footer = () => {
                   <MagneticGsap>
                     {" "}
                     <svg
-                      className="lg:mr-[20px]"
+                      className="md:mr-[10px] lg:mr-[20px]"
                       xmlns="http://www.w3.org/2000/svg"
                       width="36"
                       height="36"
