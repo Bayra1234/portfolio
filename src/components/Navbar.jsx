@@ -1,10 +1,37 @@
+import { useState } from "react";
+
+//icon
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import ShortTextRoundedIcon from "@mui/icons-material/ShortTextRounded";
+
+//icon
+import Drawer from "@mui/material/Drawer";
+
 const Navbar = () => {
+  const [menu, setMenu] = useState(false);
+  const toggleDrawer = (anchor) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+    setMenu(anchor);
+  };
   return (
     <div>
       <div className="navbar">
         <a href="/" className=" cursor-pointer">
           <span className="stripes fade"></span>
         </a>
+        <div
+          className="block lg:hidden"
+          onClick={() => {
+            setMenu(true);
+          }}
+        >
+          <ShortTextRoundedIcon sx={{ fontSize: "40px" }} />
+        </div>
         <ul>
           <li className="cta">
             <a href="#" className="hover-underline-animation">
@@ -27,7 +54,7 @@ const Navbar = () => {
             </a>
           </li>
         </ul>
-        <div className="cta">
+        <div className="cta hidden lg:flex">
           {" "}
           <a
             href="#contact"
@@ -50,6 +77,64 @@ const Navbar = () => {
             </svg>
           </a>
         </div>
+
+        {/* mobile navbar  */}
+        <Drawer
+          anchor={"right"}
+          open={menu}
+          onClose={() => {
+            setMenu(false);
+          }}
+          PaperProps={{
+            sx: {
+              // backgroundColor: "transparent",
+              boxShadow: "none",
+              width: "90%",
+            },
+          }}
+        >
+          <div className="mobileNavbar">
+            <div className="ofmob">
+              <CloseRoundedIcon
+                sx={{ color: "black", fontSize: "40px" }}
+                onClick={() => {
+                  setMenu(false);
+                }}
+              />
+            </div>
+            <ul>
+              <li className={`${menu ? "showmyli" : ""}`}>
+                <a href="#" className="hover-underline-animation">
+                  Home
+                </a>
+              </li>
+              <li className={`${menu ? "showmyli" : ""}`}>
+                <a href="#works" className="hover-underline-animation">
+                  Works
+                </a>
+              </li>
+              <li className={`${menu ? "showmyli" : ""}`}>
+                <a href="#skills" className="hover-underline-animation">
+                  Skills
+                </a>
+              </li>
+              <li className={`${menu ? "showmyli" : ""}`}>
+                <a href="#aboutme" className="hover-underline-animation">
+                  About-me
+                </a>
+              </li>
+            </ul>
+            <a
+              href="#contact"
+              className={`flex hover-underline-animation justify-center items-center navcontact ${
+                menu ? "contactani" : ""
+              }`}
+            >
+              Contact
+            </a>
+          </div>
+        </Drawer>
+        {/* mobile navbar  */}
       </div>
     </div>
   );

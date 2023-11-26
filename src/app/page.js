@@ -23,19 +23,19 @@ export default function Home() {
   }, []);
   return (
     <div>
-      {/* {pageTransition && (
+      {pageTransition && (
         <div className="overlay">
           <p className="text"></p>
         </div>
-      )} */}
+      )}
       <div>
-        {/* <Navbar /> */}
+        <Navbar />
         <Hero />
-        <Works />
+        {/* <Works />
         <Skills />
         <AboutMe />
         <Contact />
-        <Footer />
+        <Footer /> */}
       </div>
     </div>
   );

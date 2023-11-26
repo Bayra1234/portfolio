@@ -11,7 +11,7 @@ const Hero = () => {
         <div className=" heroicons">
           <a href="mailto:sharan.kundapur@gmail.com" target="_blank">
             <svg
-            className="hero1"
+              className="hero1"
               xmlns="http://www.w3.org/2000/svg"
               width="32"
               height="32"
@@ -56,15 +56,17 @@ const Hero = () => {
           </a>
         </div>
         <div className="heroBtnSection">
-          <button className="heroBtnContact">Contact</button>
+          <a href="#contact" className="heroBtnContact">
+            Contact
+          </a>
           <div>
             <button className="heroBtnContact">Resume</button>
           </div>
         </div>
       </div>
-      <div className="heroRight">
+      {/* <div className="heroRight">
         <p className="designNation">front end</p>
-      </div>
+      </div> */}
     </div>
   );
 };

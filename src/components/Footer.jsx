@@ -1,76 +1,8 @@
-import {
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-  useMotionValue,
-  useVelocity,
-  useAnimationFrame,
-} from "framer-motion";
-import { wrap } from "@motionone/utils";
-import { useRef } from "react";
-import StarIcon from "@mui/icons-material/Star";
 import MagneticGsap from "./MagneticGsap";
-
-function ParallaxText({ children, baseVelocity = 100 }) {
-  const baseX = useMotionValue(0);
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 400,
-  });
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
-    clamp: false,
-  });
-  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
-
-  const directionFactor = useRef(1);
-  useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * baseVelocity * (delta / 3000);
-    if (velocityFactor.get() < 0) {
-      directionFactor.current = -1;
-    } else if (velocityFactor.get() > 0) {
-      directionFactor.current = 1;
-    }
-
-    moveBy += directionFactor.current * moveBy * velocityFactor.get();
-
-    baseX.set(baseX.get() + moveBy);
-  });
-  return (
-    <div className="parallax">
-      <motion.div className="scroller" style={{ x }}>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-      </motion.div>
-    </div>
-  );
-}
 
 const Footer = () => {
   return (
     <div className="footerSection">
-      <section>
-        <ParallaxText baseVelocity={-5}>
-          Front end developer
-          <StarIcon sx={{ color: "white", fontSize: "55px" }} />
-        </ParallaxText>
-        <ParallaxText baseVelocity={5}>
-          Front end developer
-          <StarIcon sx={{ color: "white", fontSize: "55px" }} />
-        </ParallaxText>
-      </section>
       <div className="insideFooter">
         <div className="footer-div ">
           <div className="flex justify-between items-center lg:gap-[24px]">
@@ -78,12 +10,30 @@ const Footer = () => {
               <div className="flex gap-[24px] lg:gap-[24px] items-start flex-col">
                 <div className="footer-text">
                   <MagneticGsap>
-                    {" "}
                     <svg
-                      className="md:mr-[10px] lg:mr-[20px]"
+                      className="md:mr-[10px] lg:mr-[20px] hidden lg:block"
                       xmlns="http://www.w3.org/2000/svg"
                       width="36"
                       height="36"
+                      viewBox="0 0 256 256"
+                    >
+                      <g
+                        fill="white"
+                        strokeMiterlimit="10"
+                        strokeWidth="0"
+                        transform="matrix(2.81 0 0 2.81 1.407 1.407)"
+                      >
+                        <path d="M45 90C20.187 90 0 69.813 0 45S20.187 0 45 0s45 20.187 45 45-20.187 45-45 45zm0-86C22.393 4 4 22.393 4 45s18.393 41 41 41 41-18.393 41-41S67.607 4 45 4z"></path>
+                        <circle cx="31" cy="35.55" r="5"></circle>
+                        <circle cx="59" cy="35.55" r="5"></circle>
+                        <path d="M45 69.345c-7.954 0-15.337-3.969-19.751-10.617a2 2 0 113.332-2.212c3.671 5.529 9.809 8.83 16.419 8.83 6.61 0 12.748-3.301 16.419-8.83a2 2 0 113.332 2.212C60.337 65.376 52.953 69.345 45 69.345z"></path>
+                      </g>
+                    </svg>
+                    <svg
+                      className="md:mr-[10px] lg:mr-[20px] block lg:hidden"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="26"
+                      height="26"
                       viewBox="0 0 256 256"
                     >
                       <g

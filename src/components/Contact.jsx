@@ -1,5 +1,7 @@
 import { validationSchemaForm } from "@/schema/validation";
 import { useFormik } from "formik";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import RocketLaunchRoundedIcon from "@mui/icons-material/RocketLaunchRounded";
 const Contact = () => {
@@ -12,11 +14,29 @@ const Contact = () => {
       describe: "",
     },
     validationSchema: validationSchemaForm,
-    onSubmit: () => {
-      console.log("fuck yeah");
-      setLaunch(true);
+    onSubmit: (values) => {
+      submitContactForm(values);
     },
   });
+
+  const submitContactForm = (data) => {
+    
+    fetch("/api/sendEmail", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((res) => {
+        setLaunch(true);
+        formik.resetForm({});
+      })
+      .catch((err) => {
+        console.log(err, "from catch");
+      });
+  };
 
   return (
     <div id="contact" className="aboutme">
@@ -36,6 +56,7 @@ const Contact = () => {
                   placeholder="Enter name"
                   className="input-feild"
                   name="name"
+                  // defaultValue={formik.values.name}
                   onChange={formik.handleChange}
                 />
                 {formik.errors.name && formik.touched.name && (
@@ -52,6 +73,7 @@ const Contact = () => {
                   placeholder="Enter email"
                   className="input-feild"
                   name="email"
+                  // defaultValue={formik.values.email}
                   onChange={formik.handleChange}
                 />
                 {formik.errors.email && formik.touched.email && (
@@ -69,6 +91,7 @@ const Contact = () => {
                 placeholder="Enter organisation"
                 className="input-feild"
                 name="organ"
+                // defaultValue={formik.values.organ}
                 onChange={formik.handleChange}
               />
               {formik.errors.organ && formik.touched.organ && (
@@ -85,6 +108,7 @@ const Contact = () => {
                 placeholder="Enter message"
                 className="text-feild"
                 name="describe"
+                // defaultValue={formik.values.describe}
                 onChange={formik.handleChange}
               />
               {formik.errors.describe && formik.touched.describe && (
@@ -151,6 +175,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      {/* <ToastContainer /> */}
     </div>
   );
 };
