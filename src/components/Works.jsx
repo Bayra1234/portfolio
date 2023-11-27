@@ -1,10 +1,8 @@
-import { useState } from "react";
-// import mustang from "../../../../images/mustang.jpg";
-// import veg from "@../../../../mages/veg.jpg";
-// import tiger from "../../../../images/tiger.jpg";
-// import tree from "../../../../images/tree.jpg";
+import { useEffect, useRef, useState } from "react";
+
 const Works = () => {
   const [loadMore, setLoadMote] = useState(false);
+
   const projectData = [
     {
       id: 0,
@@ -38,11 +36,34 @@ const Works = () => {
       dec: "Server hosting",
     },
   ];
+  const [observerVisible, setObserverVisible] = useState(false);
+  const myRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        setObserverVisible(true);
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(myRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <div className="workssection" id="works">
+    <div
+      className={`workssection ${observerVisible ? "fadeScroll" : "obfade"}`}
+      id="works"
+      ref={myRef}
+    >
       {" "}
       <p className="aboutHeader ">Works</p>
-      <div className="grid-layout md:mt-[40px] lg:mt-[50px]">
+      <div className="grid-layout mt-[40px]  lg:mt-[50px]">
         {loadMore
           ? projectData.map((item, index) => {
               return (

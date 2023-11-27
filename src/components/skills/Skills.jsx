@@ -1,21 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Project from "./Project";
 import Modal from "./Modal";
 
 const Skills = () => {
-  // const data = [
-  //   { id: 0, skill: "HTML5", src: "html.png", color: "#EFE8D3" },
-  //   { id: 1, skill: "CSS3", src: "css.png", color: "#706D63" },
-  //   { id: 2, skill: "JavaScript", src: "javascript.png", color: "#000000" },
-  //   { id: 3, skill: "React", src: "react.png", color: "#706D63" },
-  //   { id: 4, skill: "Next js", src: "nextjs.png", color: "#000000" },
-  //   { id: 5, skill: "typeScript", src: "typescript.png", color: "#EFE8D3" },
-  //   { id: 6, skill: "Redux", src: "redux.png", color: "#000000" },
-  //   { id: 6, skill: "git/gitHub", src: "git.png", color: "#000000" },
-  // ];
-
   const data = [
     {
       id: 0,
@@ -172,11 +161,33 @@ const Skills = () => {
   ];
 
   const [modal, setModal] = useState({ active: false, index: 0 });
+  const [observerVisible, setObserverVisible] = useState(false);
+  const myRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        setObserverVisible(true);
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(myRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   return (
-    <div id="skills" className="aboutme">
+    <div
+      id="skills"
+      className={`aboutme ${observerVisible ? "fadeScroll" : "obfade"}`}
+      ref={myRef}
+    >
       <p className="aboutHeader ">Skills</p>
 
-      <main className="main lg:mt-[50px]">
+      <main className="main lg:mt-[50px] hidden lg:block">
         <div className="body">
           {data.map((project, index) => {
             return (
@@ -192,6 +203,18 @@ const Skills = () => {
 
         <Modal modal={modal} projects={data} />
       </main>
+
+      {/* mobile  */}
+      <div className="tech-box mt-[48px] lg:mt-[20px] w-full skill-grid-box lg:hidden">
+        {data.map((item, index) => {
+          return (
+            <div className="svgs-box" key={index}>
+              <div className={`logo-div${index}`}> {item.src || "-"}</div>
+              <p className="skill-text">{item.skill || "-"}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -11,12 +11,15 @@ import Skills from "@/components/skills/Skills";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  const [pageTransition, setPageTransition] = useState(true);
+  const [pageTransition, setPageTransition] = useState(false);
 
   useEffect(() => {
-    sessionStorage.setItem("isLoaded", true);
-    if (sessionStorage.getItem("isLoaded")) {
-      setPageTransition(true);
+    window.addEventListener("load", () => {
+      localStorage.setItem("isLoaded", true);
+    });
+
+    if (localStorage.getItem("isLoaded")) {
+      setPageTransition(false);
     } else {
       setPageTransition(true);
     }
@@ -25,17 +28,20 @@ export default function Home() {
     <div>
       {pageTransition && (
         <div className="overlay">
-          <p className="text"></p>
+          <p className="overlayText">
+            Sharan <span className="colorCircle"></span>
+          </p>
+          <div className="barBottom"></div>
         </div>
       )}
       <div>
         <Navbar />
         <Hero />
-        {/* <Works />
+        <Works />
         <Skills />
         <AboutMe />
         <Contact />
-        <Footer /> */}
+        <Footer />
       </div>
     </div>
   );

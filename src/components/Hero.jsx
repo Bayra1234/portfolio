@@ -1,3 +1,5 @@
+
+
 const Hero = () => {
   return (
     <div className="hero">
@@ -64,9 +66,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      {/* <div className="heroRight">
-        <p className="designNation">front end</p>
-      </div> */}
     </div>
   );
 };

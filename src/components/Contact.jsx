@@ -1,11 +1,17 @@
+"use client";
+
 import { validationSchemaForm } from "@/schema/validation";
 import { useFormik } from "formik";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useState, useRef, useEffect } from "react";
+import axios from "axios";
 import RocketLaunchRoundedIcon from "@mui/icons-material/RocketLaunchRounded";
 const Contact = () => {
+  const clearRef = useRef(null);
   const [launch, setLaunch] = useState(false);
+  const [loader, setLoader] = useState(false);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -20,30 +26,58 @@ const Contact = () => {
   });
 
   const submitContactForm = (data) => {
-    
-    fetch("/api/sendEmail", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((res) => {
+    setLoader(true);
+    axios
+      .post("/api/sendEmail", {
+        body: data,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
+      .then(function (response) {
+        setLoader(false);
         setLaunch(true);
         formik.resetForm({});
+        clearRef.current.value = "";
       })
-      .catch((err) => {
-        console.log(err, "from catch");
+      .catch(function (error) {
+        toast("Some thing went wrong");
+        console.log(error, "Some thing went wrong");
+        setLaunch(false);
+        setLoader(false);
       });
   };
 
+  const [observerVisible, setObserverVisible] = useState(false);
+  const myRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        setObserverVisible(true);
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(myRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <div id="contact" className="aboutme">
+    <div
+      id="contact"
+      className={`aboutme ${observerVisible ? "fadeScroll" : "obfade"}`}
+      ref={myRef}
+    >
       <p className="aboutHeader ">Contact</p>
 
-      <div className="md:mt-[40px] lg:mt-[50px]">
-        <div className="flex justify-between items-center md:flex-col md:justify-start md:items-start lg:justify-between lg:items-center lg:flex-row flex-col ">
+      <div className="mt-[40px] lg:mt-[50px]">
+        <div className="flex justify-between items-start md:flex-col md:justify-start md:items-start lg:justify-between lg:items-center lg:flex-row flex-col ">
           <form className="relative" onSubmit={formik.handleSubmit}>
             <div className="grid grid-cols-2 gap-x-[12px] lg:gap-x-[16px] mb-[16px] lg:mb-[16px]">
               <div className="flex flex-col">
@@ -51,6 +85,7 @@ const Contact = () => {
                   Name <span>*</span>
                 </label>
                 <input
+                  ref={clearRef}
                   type="text"
                   id="name"
                   placeholder="Enter name"
@@ -68,6 +103,7 @@ const Contact = () => {
                   Email <span>*</span>
                 </label>
                 <input
+                  ref={clearRef}
                   type="email"
                   id="email"
                   placeholder="Enter email"
@@ -86,6 +122,7 @@ const Contact = () => {
                 Organisation <span>*</span>
               </label>
               <input
+                ref={clearRef}
                 type="text"
                 id="organ"
                 placeholder="Enter organisation"
@@ -103,6 +140,7 @@ const Contact = () => {
                 Message <span>*</span>
               </label>
               <textarea
+                ref={clearRef}
                 type="text"
                 id="mess"
                 placeholder="Enter message"
@@ -116,8 +154,15 @@ const Contact = () => {
               )}
             </div>
             <div className="flex items-center gap-4">
-              <button type="submit" className="send-Btn">
-                Send{" "}
+              <button
+                type="submit"
+                className="send-Btn flex justify-center items-center"
+              >
+                {loader ? (
+                  <CircularProgress size={18} sx={{ color: "white" }} />
+                ) : (
+                  "Send"
+                )}
               </button>
               <span className={`${launch ? "animateRocket" : ""}`}>
                 <RocketLaunchRoundedIcon
@@ -175,7 +220,18 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      {/* <ToastContainer /> */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };

@@ -30,7 +30,7 @@ const Footer = () => {
                       </g>
                     </svg>
                     <svg
-                      className="md:mr-[10px] lg:mr-[20px] block lg:hidden"
+                      className="mr-[10px] lg:mr-[20px] block lg:hidden"
                       xmlns="http://www.w3.org/2000/svg"
                       width="26"
                       height="26"

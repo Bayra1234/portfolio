@@ -1,28 +1,51 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 //icon
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import ShortTextRoundedIcon from "@mui/icons-material/ShortTextRounded";
 
 //icon
 import Drawer from "@mui/material/Drawer";
+//
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
 
 const Navbar = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [open, setOpen] = useState(false);
+
   const [menu, setMenu] = useState(false);
-  const toggleDrawer = (anchor) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-    setMenu(anchor);
+  // let windowWidth = window.innerWidth;
+
+  let navLineStyle = {
+    "--nav": false ? "1s" : "7.2s",
   };
+
+  useEffect(() => {
+    // if (windowWidth > 768) {
+    //   setMenu(false);
+    // } else {
+    //   setTimeout(() => {
+    //     setOpen(true);
+    //   }, 5000);
+    // }
+
+    if (localStorage.getItem("isLoaded")) {
+      setIsLoaded(true);
+      navLineStyle = {
+        "--nav": false ? "1s" : "7.2s",
+      };
+    } else {
+      setIsLoaded(false);
+      navLineStyle = {
+        "--nav": false ? "1s" : "7.2s",
+      };
+    }
+  }, []);
   return (
     <div>
       <div className="navbar">
         <a href="/" className=" cursor-pointer">
-          <span className="stripes fade"></span>
+          <span className="stripes fade" style={navLineStyle}></span>
         </a>
         <div
           className="block lg:hidden"
@@ -55,7 +78,6 @@ const Navbar = () => {
           </li>
         </ul>
         <div className="cta hidden lg:flex">
-          {" "}
           <a
             href="#contact"
             className="flex hover-underline-animation justify-center items-center navcontact"
@@ -103,28 +125,51 @@ const Navbar = () => {
               />
             </div>
             <ul>
-              <li className={`${menu ? "showmyli" : ""}`}>
+              <li
+                className={`${menu ? "showmyli" : ""}`}
+                onClick={() => {
+                  setMenu(false);
+                }}
+              >
                 <a href="#" className="hover-underline-animation">
                   Home
                 </a>
               </li>
-              <li className={`${menu ? "showmyli" : ""}`}>
+              <li
+                className={`${menu ? "showmyli" : ""}`}
+                onClick={() => {
+                  setMenu(false);
+                }}
+              >
                 <a href="#works" className="hover-underline-animation">
                   Works
                 </a>
               </li>
-              <li className={`${menu ? "showmyli" : ""}`}>
+              <li
+                className={`${menu ? "showmyli" : ""}`}
+                onClick={() => {
+                  setMenu(false);
+                }}
+              >
                 <a href="#skills" className="hover-underline-animation">
                   Skills
                 </a>
               </li>
-              <li className={`${menu ? "showmyli" : ""}`}>
+              <li
+                className={`${menu ? "showmyli" : ""}`}
+                onClick={() => {
+                  setMenu(false);
+                }}
+              >
                 <a href="#aboutme" className="hover-underline-animation">
                   About-me
                 </a>
               </li>
             </ul>
             <a
+              onClick={() => {
+                setMenu(false);
+              }}
               href="#contact"
               className={`flex hover-underline-animation justify-center items-center navcontact ${
                 menu ? "contactani" : ""
@@ -135,6 +180,31 @@ const Navbar = () => {
           </div>
         </Drawer>
         {/* mobile navbar  */}
+
+        {/* pop up  */}
+        <Dialog
+          open={open}
+          onClose={() => {
+            setOpen(false);
+          }}
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <p className="flex justify-between items-center px-[24px] pt-[20px] pb-[5px] border-t-[5px] border-t-black ">
+            <div className="whoopsM">Message </div>
+            <CloseRoundedIcon
+              sx={{ color: "black", fontSize: "30px", cursor: "pointer" }}
+              onClick={() => {
+                setOpen(false);
+              }}
+            />
+          </p>
+          <DialogContent>
+            <p className="whoops">
+              Hey, don't miss out the full experience take a peek at the desktop
+              view!
+            </p>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
