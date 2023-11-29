@@ -31,12 +31,16 @@ const MagneticGsap = ({ children }) => {
       yTo(0);
     };
 
-    magnetRef.current.addEventListener("mousemove", mouseMove);
-    magnetRef.current.addEventListener("mouseleave", mouseLeave);
+    if (magnetRef.current) {
+      magnetRef.current.addEventListener("mousemove", mouseMove);
+      magnetRef.current.addEventListener("mouseleave", mouseLeave);
+    }
 
     return () => {
-      magnetRef.current.removeEventListener("mousemove", mouseMove);
-      magnetRef.current.removeEventListener("mouseleave", mouseLeave);
+      if (magnetRef.current) {
+        magnetRef.current.removeEventListener("mousemove", mouseMove);
+        magnetRef.current.removeEventListener("mouseleave", mouseLeave);
+      }
     };
   }, []);
   return <div ref={magnetRef}>{children}</div>;

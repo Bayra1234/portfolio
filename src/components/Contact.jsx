@@ -1,10 +1,18 @@
+"use client";
+
 import { validationSchemaForm } from "@/schema/validation";
 import { useFormik } from "formik";
-import { useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useState, useRef, useEffect } from "react";
+import axios from "axios";
 import RocketLaunchRoundedIcon from "@mui/icons-material/RocketLaunchRounded";
 const Contact = () => {
   const [launch, setLaunch] = useState(false);
+  const [loader, setLoader] = useState(false);
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
       name: "",
       email: "",
@@ -12,18 +20,66 @@ const Contact = () => {
       describe: "",
     },
     validationSchema: validationSchemaForm,
-    onSubmit: () => {
-      console.log("fuck yeah");
-      setLaunch(true);
+    onSubmit: (values) => {
+      submitContactForm(values);
     },
   });
 
-  return (
-    <div id="contact" className="aboutme">
-      <p className="aboutHeader ">Contact</p>
+  const submitContactForm = (data) => {
+    setLoader(true);
+    setLaunch(false);
+    axios
+      .post("/api/sendEmail", {
+        body: data,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
+      .then(() => {
+        setLoader(false);
+        setLaunch(true);
+        formik.resetForm({});
+        setTimeout(() => {
+          toast("Message sent successfully");
+        }, 4000);
+      })
+      .catch((err) => {
+        formik.resetForm({});
+        toast("Something went wrong");
+        setLaunch(false);
+        setLoader(false);
+      });
+  };
 
-      <div className="lg:mt-[50px]">
-        <div className="flex justify-between items-center md:flex-col md:justify-start md:items-start lg:justify-between lg:items-center lg:flex-row flex-col ">
+  const [observerVisible, setObserverVisible] = useState(false);
+  const myRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        setObserverVisible(true);
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(myRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <div
+      id="contact"
+      className={`aboutme ${observerVisible ? "fadeScroll" : "obfade"}`}
+      ref={myRef}
+    >
+      <p className="aboutHeader ">Contact</p>
+      <div className="mt-[40px] lg:mt-[50px]">
+        <div className="flex justify-between items-start md:flex-col md:justify-start md:items-start lg:justify-between lg:items-center lg:flex-row flex-col ">
           <form className="relative" onSubmit={formik.handleSubmit}>
             <div className="grid grid-cols-2 gap-x-[12px] lg:gap-x-[16px] mb-[16px] lg:mb-[16px]">
               <div className="flex flex-col">
@@ -34,8 +90,10 @@ const Contact = () => {
                   type="text"
                   id="name"
                   placeholder="Enter name"
+                  autoComplete="off"
                   className="input-feild"
                   name="name"
+                  value={formik.values.name}
                   onChange={formik.handleChange}
                 />
                 {formik.errors.name && formik.touched.name && (
@@ -49,7 +107,9 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
+                  autoComplete="off"
                   placeholder="Enter email"
+                  value={formik.values.email}
                   className="input-feild"
                   name="email"
                   onChange={formik.handleChange}
@@ -61,11 +121,13 @@ const Contact = () => {
             </div>
             <div className="flex  flex-col mb-[16px] lg:mb-[16px]">
               <label htmlFor="organ" className="label-text">
-                Organisation <span>*</span>
+                Organisation
               </label>
               <input
                 type="text"
                 id="organ"
+                autoComplete="off"
+                value={formik.values.organ}
                 placeholder="Enter organisation"
                 className="input-feild"
                 name="organ"
@@ -82,6 +144,8 @@ const Contact = () => {
               <textarea
                 type="text"
                 id="mess"
+                autoComplete="off"
+                value={formik.values.describe}
                 placeholder="Enter message"
                 className="text-feild"
                 name="describe"
@@ -92,8 +156,16 @@ const Contact = () => {
               )}
             </div>
             <div className="flex items-center gap-4">
-              <button type="submit" className="send-Btn">
-                Send{" "}
+              <button
+                type="submit"
+                className="send-Btn flex justify-center items-center"
+                style={{ background: `${loader ? "black" : ""}` }}
+              >
+                {loader ? (
+                  <CircularProgress size={18} sx={{ color: "white" }} />
+                ) : (
+                  "Send"
+                )}
               </button>
               <span className={`${launch ? "animateRocket" : ""}`}>
                 <RocketLaunchRoundedIcon
@@ -102,13 +174,14 @@ const Contact = () => {
               </span>
             </div>
           </form>
-          <div className="support-me mt-[25px] lg:mt-[0px] flex flex-col gap-y-[20px]">
+          <div className="support-me mt-[15px] lg:mt-[0px] flex flex-col gap-y-[20px]">
             <p className="message-text">Message me here</p>
 
             <a
+              aria-label="message-sub-text flex items-center"
               href="https://wa.me/919380393651/?text=Hi Sharan,"
               target="_blank"
-              className="message-sub-text flex items-center cta "
+              className="message-sub-text flex items-center"
             >
               <svg
                 className="mr-[6px] lg:mr-[5px]"
@@ -127,7 +200,8 @@ const Contact = () => {
             </a>
 
             <a
-              className="message-sub-text flex items-center cta "
+              aria-label="message-sub-text flex items-center"
+              className="message-sub-text flex items-center"
               href="mailto:sharan.kundapur@gmail.com"
               target="_blank"
             >
@@ -151,6 +225,18 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };
