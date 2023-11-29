@@ -9,10 +9,10 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import RocketLaunchRoundedIcon from "@mui/icons-material/RocketLaunchRounded";
 const Contact = () => {
-  const clearRef = useRef(null);
   const [launch, setLaunch] = useState(false);
   const [loader, setLoader] = useState(false);
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
       name: "",
       email: "",
@@ -27,6 +27,7 @@ const Contact = () => {
 
   const submitContactForm = (data) => {
     setLoader(true);
+    setLaunch(false);
     axios
       .post("/api/sendEmail", {
         body: data,
@@ -35,15 +36,17 @@ const Contact = () => {
           Accept: "application/json",
         },
       })
-      .then(function (response) {
+      .then(() => {
         setLoader(false);
         setLaunch(true);
         formik.resetForm({});
-        clearRef.current.value = "";
+        setTimeout(() => {
+          toast("Message sent successfully");
+        }, 4000);
       })
-      .catch(function (error) {
-        toast("Some thing went wrong");
-        console.log(error, "Some thing went wrong");
+      .catch((err) => {
+        formik.resetForm({});
+        toast("Something went wrong");
         setLaunch(false);
         setLoader(false);
       });
@@ -75,7 +78,6 @@ const Contact = () => {
       ref={myRef}
     >
       <p className="aboutHeader ">Contact</p>
-
       <div className="mt-[40px] lg:mt-[50px]">
         <div className="flex justify-between items-start md:flex-col md:justify-start md:items-start lg:justify-between lg:items-center lg:flex-row flex-col ">
           <form className="relative" onSubmit={formik.handleSubmit}>
@@ -85,13 +87,13 @@ const Contact = () => {
                   Name <span>*</span>
                 </label>
                 <input
-                  ref={clearRef}
                   type="text"
                   id="name"
                   placeholder="Enter name"
+                  autoComplete="off"
                   className="input-feild"
                   name="name"
-                  // defaultValue={formik.values.name}
+                  value={formik.values.name}
                   onChange={formik.handleChange}
                 />
                 {formik.errors.name && formik.touched.name && (
@@ -103,13 +105,13 @@ const Contact = () => {
                   Email <span>*</span>
                 </label>
                 <input
-                  ref={clearRef}
                   type="email"
                   id="email"
+                  autoComplete="off"
                   placeholder="Enter email"
+                  value={formik.values.email}
                   className="input-feild"
                   name="email"
-                  // defaultValue={formik.values.email}
                   onChange={formik.handleChange}
                 />
                 {formik.errors.email && formik.touched.email && (
@@ -119,16 +121,16 @@ const Contact = () => {
             </div>
             <div className="flex  flex-col mb-[16px] lg:mb-[16px]">
               <label htmlFor="organ" className="label-text">
-                Organisation <span>*</span>
+                Organisation
               </label>
               <input
-                ref={clearRef}
                 type="text"
                 id="organ"
+                autoComplete="off"
+                value={formik.values.organ}
                 placeholder="Enter organisation"
                 className="input-feild"
                 name="organ"
-                // defaultValue={formik.values.organ}
                 onChange={formik.handleChange}
               />
               {formik.errors.organ && formik.touched.organ && (
@@ -140,13 +142,13 @@ const Contact = () => {
                 Message <span>*</span>
               </label>
               <textarea
-                ref={clearRef}
                 type="text"
                 id="mess"
+                autoComplete="off"
+                value={formik.values.describe}
                 placeholder="Enter message"
                 className="text-feild"
                 name="describe"
-                // defaultValue={formik.values.describe}
                 onChange={formik.handleChange}
               />
               {formik.errors.describe && formik.touched.describe && (
@@ -157,6 +159,7 @@ const Contact = () => {
               <button
                 type="submit"
                 className="send-Btn flex justify-center items-center"
+                style={{ background: `${loader ? "black" : ""}` }}
               >
                 {loader ? (
                   <CircularProgress size={18} sx={{ color: "white" }} />
@@ -171,13 +174,14 @@ const Contact = () => {
               </span>
             </div>
           </form>
-          <div className="support-me mt-[25px] lg:mt-[0px] flex flex-col gap-y-[20px]">
+          <div className="support-me mt-[15px] lg:mt-[0px] flex flex-col gap-y-[20px]">
             <p className="message-text">Message me here</p>
 
             <a
+              aria-label="message-sub-text flex items-center"
               href="https://wa.me/919380393651/?text=Hi Sharan,"
               target="_blank"
-              className="message-sub-text flex items-center cta "
+              className="message-sub-text flex items-center"
             >
               <svg
                 className="mr-[6px] lg:mr-[5px]"
@@ -196,7 +200,8 @@ const Contact = () => {
             </a>
 
             <a
-              className="message-sub-text flex items-center cta "
+              aria-label="message-sub-text flex items-center"
+              className="message-sub-text flex items-center"
               href="mailto:sharan.kundapur@gmail.com"
               target="_blank"
             >
@@ -221,7 +226,7 @@ const Contact = () => {
         </div>
       </div>
       <ToastContainer
-        position="top-right"
+        position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

@@ -1,5 +1,3 @@
-
-
 const Hero = () => {
   return (
     <div className="hero">
@@ -11,7 +9,11 @@ const Hero = () => {
         </p>
         {/* desktop */}
         <div className=" heroicons">
-          <a href="mailto:sharan.kundapur@gmail.com" target="_blank">
+          <a
+            href="mailto:sharan.kundapur@gmail.com"
+            target="_blank"
+            aria-label="mmailto:sharan.kundapur@gmail.comailto"
+          >
             <svg
               className="hero1"
               xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +28,11 @@ const Hero = () => {
               ></path>
             </svg>
           </a>
-          <a target="_blank" href="https://www.linkedin.com/in/sharan-js">
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/sharan-js"
+            aria-label="https://www.linkedin.com/in/sharan-js"
+          >
             <svg
               className="hero2"
               xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +47,11 @@ const Hero = () => {
               ></path>
             </svg>
           </a>
-          <a href="https://wa.me/919380393651/?text=Hi Sharan," target="_blank">
+          <a
+            href="https://wa.me/919380393651/?text=Hi Sharan,"
+            target="_blank"
+            aria-label="hero3"
+          >
             <svg
               className="hero3"
               xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +68,7 @@ const Hero = () => {
           </a>
         </div>
         <div className="heroBtnSection">
-          <a href="#contact" className="heroBtnContact">
+          <a href="#contact" className="heroBtnContact" aria-label="Contact">
             Contact
           </a>
           <div>

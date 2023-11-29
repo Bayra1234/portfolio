@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Works = () => {
   const [loadMore, setLoadMote] = useState(false);
@@ -8,32 +10,28 @@ const Works = () => {
       id: 0,
       imagePath:
         "https://images.pexels.com/photos/3536276/pexels-photo-3536276.jpeg?auto=compress&cs=tinysrgb&w=600",
-      techStack: "HTMl CSS JavaScript React",
-      title: "Swiggy clone",
-      dec: "Server hosting",
+      techStack: "Next js, Node js, Mongo DB",
+      title: "Supper car dealership",
+      isDisabled: true,
+      github: "",
     },
     {
       id: 1,
       imagePath:
-        "https://images.pexels.com/photos/4208113/pexels-photo-4208113.jpeg?auto=compress&cs=tinysrgb&w=600",
-      techStack: "HTMl CSS JavaScript React",
-      title: "Project 1",
-      dec: "Server hosting",
+        "https://images.pexels.com/photos/6770610/pexels-photo-6770610.jpeg?auto=compress&cs=tinysrgb&w=600",
+      techStack: "Next js, socket.io, d3, Node js",
+      title: "Real time data transfer",
+      isDisabled: true,
+      github: "",
     },
     {
       id: 2,
       imagePath:
-        "https://images.pexels.com/photos/18038879/pexels-photo-18038879/free-photo-of-luxury-shelby-mustang-standing-on-parking-lot.jpeg?auto=compress&cs=tinysrgb&w=600",
-      techStack: "HTMl CSS JavaScript React",
-      title: "Project 1",
-      dec: "Server hosting",
-    },
-    {
-      id: 3,
-      imagePath: "splendor bike",
-      techStack: "HTMl CSS JavaScript React",
-      title: "Project 1",
-      dec: "Server hosting",
+        "https://images.pexels.com/photos/14936124/pexels-photo-14936124.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      techStack: "Next js, Node js",
+      title: "You’re using it right now",
+      isDisabled: false,
+      github: "https://github.com/leoraptor/sharanweb",
     },
   ];
   const [observerVisible, setObserverVisible] = useState(false);
@@ -61,7 +59,6 @@ const Works = () => {
       id="works"
       ref={myRef}
     >
-      {" "}
       <p className="aboutHeader ">Works</p>
       <div className="grid-layout mt-[40px]  lg:mt-[50px]">
         {loadMore
@@ -75,12 +72,13 @@ const Works = () => {
                       alt="..."
                     />
                   </div>
-
-                  {/* <p className="tech-stack-text">{item.techStack || "-"}</p> */}
                   <div className="project-content">
                     <p className="project-title">{item.title || "-"}</p>
                     <p className="project-sub-text">{item.dec || "-"}</p>
-                    <a className="live-btn">{`Live <~>`}</a>
+                    <a
+                      aria-label="Live <~>"
+                      className="live-btn"
+                    >{`Live <~>`}</a>
                   </div>
                 </div>
               );
@@ -101,8 +99,34 @@ const Works = () => {
                       <p className="project-title">{item.title || "-"}</p>
                       {/* <p className="project-sub-text">{item.dec || "-"}</p> */}
                       <div className="flex justify-between items-center w-full gap-[25px]">
-                        <button className="live-btn">Go live</button>
-                        <button className="live-btn">github</button>
+                        <button
+                          className={`live-btn ${
+                            index === 2 ? "cursor-not-allowed" : ""
+                          }`}
+                          onClick={() => {
+                            if (item.isDisabled) {
+                              toast(
+                                "Whoops! Sorry got busy at work, I will Update this sooner!"
+                              );
+                            }
+                          }}
+                        >
+                          Go live
+                        </button>
+                        <button
+                          className="live-btn"
+                          onClick={() => {
+                            if (item.isDisabled) {
+                              toast(
+                                "Whoops! Sorry got busy at work, I will Update this sooner!"
+                              );
+                            } else {
+                              window.open(item.github, "_blank");
+                            }
+                          }}
+                        >
+                          github
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -110,6 +134,18 @@ const Works = () => {
               }
             })}
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };

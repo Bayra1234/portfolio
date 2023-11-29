@@ -11,26 +11,17 @@ import Skills from "@/components/skills/Skills";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  const [pageTransition, setPageTransition] = useState(false);
+  const [pageTransition, setPageTransition] = useState(true);
 
   useEffect(() => {
-    window.addEventListener("load", () => {
-      localStorage.setItem("isLoaded", true);
-    });
-
-    if (localStorage.getItem("isLoaded")) {
+    setTimeout(() => {
       setPageTransition(false);
-    } else {
-      setPageTransition(true);
-    }
+    }, 8000);
   }, []);
   return (
     <div>
       {pageTransition && (
         <div className="overlay">
-          <p className="overlayText">
-            Sharan <span className="colorCircle"></span>
-          </p>
           <div className="barBottom"></div>
         </div>
       )}

@@ -28,11 +28,11 @@ const AboutMe = () => {
       <p className="aboutHeader ">About Me</p>
 
       <div className="mt-[40px] lg:mt-[50px]">
-        <p className="aboutText"> Hello, i’m Sharan!</p>
+        <p className="aboutText"> Hello, I’m Sharan!</p>
         <p className="aboutText">
           I’m a front-end developer based in Bangalore. I can develop responsive
-          web applications from scratch and raise them into modern user-friendly
-          web experiences.{" "}
+          web applications which are blazing fast from scratch and raise them
+          into modern user-friendly web experiences.{" "}
         </p>
         <p className="aboutText">
           Transforming my creativity and knowledge into a websites and web

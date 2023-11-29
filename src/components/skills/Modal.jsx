@@ -19,7 +19,7 @@ const scaleAnimation = {
   },
 };
 
-export default function index({ modal, projects }) {
+export default function Modal({ modal, projects }) {
   const { active, index } = modal;
   const modalContainer = useRef(null);
   const cursor = useRef(null);
@@ -55,7 +55,6 @@ export default function index({ modal, projects }) {
       xMoveCursor(pageX);
 
       yMoveCursor(pageY);
-
     });
   }, []);
 

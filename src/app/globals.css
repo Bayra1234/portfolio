@@ -10,14 +10,12 @@
   scroll-padding: 140px;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
-  /* font-family: 'Roboto', sans-serif; */
-  /* font-family: 'Roboto', sans-serif; */
 }
 /* mobile  */
 .fadeScroll {
   opacity: 0;
   animation: observer 1s forwards;
-  animation-delay: 500ms;
+  animation-delay: 200ms;
 }
 .obfade {
   opacity: 0;
@@ -50,7 +48,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   position: fixed;
   overflow: hidden;
   gap: 7px;
@@ -61,17 +58,7 @@
     cubic-bezier(0.97, 0.01, 0.36, 0.99);
   animation-duration: 7s;
 }
-.overlayText {
-  position: relative;
-  font-family: "Noto Sans", sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-weight: 600;
-  color: white;
-  animation: hideoverlayText 3s forwards;
-  font-size: 20px;
-}
+
 @keyframes hideafterEffects {
   0% {
     height: 100vh;
@@ -84,18 +71,6 @@
     height: 0%;
     display: none;
   }
-}
-.overlayText {
-  position: relative;
-  font-family: "Poppins", sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-weight: 600;
-  color: white;
-  animation: hideoverlayText 3s forwards;
-  font-size: 20px;
-  text-transform: uppercase;
 }
 
 .barBottom {
@@ -118,12 +93,7 @@
   animation: increaseWidth 3s forwards;
   animation-delay: 100ms;
 }
-.colorCircle {
-  height: 20px;
-  width: 20px;
-  background: greenyellow;
-  border-radius: 100%;
-}
+
 @keyframes hideoverlayText {
   0% {
     display: flex;
@@ -189,8 +159,8 @@
     #fff 75%,
     #fff
   );
-  height: 40px;
-  width: 40px;
+  height: 37px;
+  width: 37px;
   transition: opacity 400ms ease, transform 400ms ease-out;
   top: 1px;
   animation: stripes-anim 700ms linear infinite;
@@ -212,24 +182,11 @@
   transform: rotate(-70deg);
 }
 .navbar {
-  top: -200px;
-  animation: showNavbar 1s forwards;
-  animation-delay: var(--nav);
   padding: 0px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-@keyframes showNavbar {
-  0% {
-    top: -200px;
-  }
-  100% {
-    top: 0px;
-  }
-}
-
 .navbar ul {
   display: none;
 }
@@ -291,17 +248,17 @@
     right: 0%;
   }
 }
-.contactani {
+.showmyli:nth-child(5) {
   position: relative;
-  opacity: 0;
-  animation: five 700ms linear 800ms forwards;
+  right: -100%;
+  animation: four 700ms linear 100ms forwards;
 }
 @keyframes five {
   0% {
-    opacity: 0;
+    right: -100%;
   }
   100% {
-    opacity: 1;
+    right: 0%;
   }
 }
 
@@ -310,10 +267,8 @@
   text-decoration: none;
   font-size: 40px;
   color: #000;
-  font-weight: 500;
-  /* font-family: "Poppins", sans-serif; */
-  font-family: "Roboto", sans-serif;
-  /* font-family: "Noto Sans", sans-serif; */
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
 }
 
 .mobileNavbar .navcontact {
@@ -347,32 +302,18 @@
 /* navbar styles  */
 /* herosection styles  */
 .hero {
-  /* width: 750px; */
   margin: 90px auto 0px auto;
   height: 50vh;
   padding: 0px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  animation: showHero 1s forwards;
-  animation-delay: 1s;
-  opacity: 0;
-}
-
-@keyframes showHero {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 .heroLeft {
   display: grid;
   place-content: center;
   height: 100%;
-  /* width: 60%; */
 }
 
 .mainName {
@@ -380,10 +321,7 @@
   font-size: 4rem;
   font-weight: 800;
   color: #000;
-
-  /* font-family: "Poppins", sans-serif; */
   line-height: 150px;
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Noto Sans", sans-serif;
 }
 .heroIntroText {
@@ -392,8 +330,6 @@
   color: #000;
   font-family: "Poppins", sans-serif;
   width: 100%;
-  /* font-family: "Roboto", sans-serif; */
-  /* font-family: "Noto Sans", sans-serif; */
 }
 .heroicons {
   margin-top: 25px;
@@ -438,8 +374,6 @@
   color: #000;
   border-radius: 4px;
   transition: 300ms ease-in-out;
-  /* font-family: "Roboto", sans-serif; */
-  /* font-family: "Noto Sans", sans-serif; */
 }
 .heroBtnContact:hover {
   background: #000;
@@ -458,6 +392,7 @@
 .project_image {
   width: 100%;
   height: 250px;
+  object-fit: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -482,9 +417,7 @@
   border-top: 2px solid black;
   font-size: 18px;
   color: #000;
-  /* font-family: "Poppins", sans-serif; */
   font-family: "Roboto", sans-serif;
-  /* font-family: "Noto Sans", sans-serif; */
   font-weight: 500;
   padding: 15px 20px 15px 20px;
 }
@@ -492,8 +425,6 @@
   font-size: 18px;
   color: #000;
   font-family: "Poppins", sans-serif;
-  /* font-family: "Roboto", sans-serif; */
-  /* font-family: "Noto Sans", sans-serif; */
   font-weight: 500;
 }
 .live-btn {
@@ -503,9 +434,6 @@
   color: #fff;
   font-size: 18px;
   color: #000;
-  /* font-family: "Poppins", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
-  /* font-family: "Noto Sans", sans-serif; */
   font-weight: 500;
   border-radius: 4px;
   width: 100%;
@@ -517,8 +445,6 @@
 }
 .aboutme,
 .workssection {
-  /* height: 70vh; */
-
   margin: 90px auto 0px auto;
   display: flex;
   padding: 0px 10px;
@@ -527,15 +453,11 @@
 .aboutHeader {
   font-size: 1.5rem;
   font-weight: 600;
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Poppins", sans-serif;
   display: flex;
   align-items: center;
   justify-content: start;
-
   padding-bottom: 2px;
-  /* text-decoration: underline; */
-  /* font-family: "Noto Sans", sans-serif; */
 }
 /* works styles  */
 
@@ -565,9 +487,6 @@
 }
 .skill-text {
   font-family: "Poppins", sans-serif;
-  /* color: #abb2bf;
-  font-size: 16px;
-  font-weight: 400; */
   font-size: 18px;
   font-weight: 500;
   color: #000;
@@ -580,15 +499,11 @@
 .aboutHeader {
   font-size: 1.5rem;
   font-weight: 600;
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Poppins", sans-serif;
   display: flex;
   align-items: center;
   justify-content: start;
-
   padding-bottom: 2px;
-  /* text-decoration: underline; */
-  /* font-family: "Noto Sans", sans-serif; */
 }
 .aboutText {
   padding-bottom: 20px;
@@ -607,8 +522,6 @@
 .label-text {
   font-size: 16px;
   color: #000;
-  /* font-family: "Poppins", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Noto Sans", sans-serif;
   font-weight: 500;
   display: flex;
@@ -616,19 +529,11 @@
   align-items: center;
   gap: 4px;
   margin-bottom: 4px;
-
-  /* position: absolute;
-    top: 15px;
-    left: 15px;
-    transition: top 0.3s;
-    pointer-events: none; */
 }
 
 .label-text span {
   font-size: 16px;
   color: #ff0000;
-  /* font-family: "Poppins", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Noto Sans", sans-serif;
   font-weight: 500;
 }
@@ -638,8 +543,6 @@
   border-radius: 4px;
   font-size: 16px;
   color: #000;
-  /* font-family: "Poppins", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Noto Sans", sans-serif;
   font-weight: 500;
   outline: none;
@@ -648,8 +551,6 @@
 .input-feild::placeholder {
   font-size: 16px;
   color: #a7a0a0;
-  /* font-family: "Poppins", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Noto Sans", sans-serif;
   font-weight: 300;
 }
@@ -659,8 +560,6 @@
   font-size: 16px;
   color: #000;
   border-radius: 4px;
-  /* font-family: "Poppins", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Noto Sans", sans-serif;
   font-weight: 500;
   outline: none;
@@ -670,8 +569,6 @@
 .text-feild::placeholder {
   font-size: 16px;
   color: #a7a0a0;
-  /* font-family: "Poppins", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Noto Sans", sans-serif;
   font-weight: 300;
 }
@@ -681,8 +578,6 @@
   color: #fff;
   font-size: 16px;
   color: #000;
-  /* font-family: "Poppins", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Noto Sans", sans-serif;
   font-weight: 500;
   border-radius: 4px;
@@ -703,22 +598,20 @@
 .message-text {
   font-size: 18px;
   color: #000;
-  /* font-family: "Poppins", sans-serif; */
   font-family: "Roboto", sans-serif;
-
-  /* font-family: "Noto Sans", sans-serif; */
   font-weight: 500;
 }
 .message-sub-text {
   font-size: 16px;
   color: #000;
   font-family: "Poppins", sans-serif;
-  /* font-family: "Roboto", sans-serif; */
-  /* font-family: "Noto Sans", sans-serif; */
   font-weight: 500;
   padding: 5px 0px;
   cursor: pointer;
   transition: 400ms ease-in;
+}
+.message-sub-text:hover p {
+  color: #484848;
 }
 
 .message-sub-text svg path {
@@ -731,8 +624,6 @@
 .error-message {
   font-size: 14px;
   color: #ff0000;
-  /* font-family: "Poppins", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Noto Sans", sans-serif;
   font-weight: 500;
   margin-top: 4px;
@@ -791,9 +682,6 @@
 .footer-text {
   color: #fff;
   font-family: "Poppins", sans-serif;
-  /* font-family: "Roboto", sans-serif; */
-  /* font-family: "Noto Sans", sans-serif; */
-
   font-size: 20px;
   font-weight: 500;
   display: flex;
@@ -834,8 +722,6 @@
   font-weight: 400;
   margin: 48px auto 32px auto;
   font-family: "Poppins", sans-serif;
-  /* font-family: "Roboto", sans-serif; */
-  /* font-family: "Noto Sans", sans-serif; */
 }
 .parallax {
   overflow: hidden;
@@ -865,8 +751,6 @@
   align-items: center;
   justify-content: center;
   letter-spacing: 1px;
-  /* font-family: "Poppins", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Noto Sans", sans-serif;
 }
 /* footer styles  */
@@ -894,27 +778,6 @@
       cubic-bezier(0.97, 0.01, 0.36, 0.99);
     animation-duration: 7s;
   }
-  .overlayText {
-    position: relative;
-    font-family: "Noto Sans", sans-serif;
-    /* font-size: 5vw; */
-    /* animation: onOff 1s linear; */
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-weight: 600;
-    color: white;
-
-    animation: hideoverlayText 3s forwards;
-
-    /* background: linear-gradient(to right, #4d4d4d 0, white 10%, #4d4d4d 20%);
-    background-position: 0;
-    background-clip: text;
-    -webkit-text-fill-color: transparent; */
-    /* animation: shine 3s forwards;
-    -webkit-text-size-adjust: none; */
-    font-size: 20px;
-  }
   @keyframes hideafterEffects {
     0% {
       height: 100vh;
@@ -938,25 +801,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    animation: showHero 1s forwards;
-    animation-delay: 1s;
-    opacity: 0;
-  }
-
-  @keyframes showHero {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
   }
 
   .heroLeft {
     display: grid;
     place-content: center;
     height: 100%;
-    /* width: 60%; */
   }
 
   .mainName {
@@ -964,10 +814,7 @@
     font-size: 4rem;
     font-weight: 800;
     color: #000;
-
-    /* font-family: "Poppins", sans-serif; */
     line-height: 150px;
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
   }
   .heroIntroText {
@@ -976,8 +823,6 @@
     color: #000;
     font-family: "Poppins", sans-serif;
     width: 100%;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
   }
   .heroicons {
     margin-top: 25px;
@@ -1022,8 +867,6 @@
     color: #000;
     border-radius: 4px;
     transition: 300ms ease-in-out;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
   }
   .heroBtnContact:hover {
     background: #000;
@@ -1041,6 +884,7 @@
   }
   .project_image {
     width: 100%;
+    object-fit: cover;
     height: 201px;
     background-repeat: no-repeat;
     background-position: center;
@@ -1066,9 +910,7 @@
     border-top: 2px solid black;
     font-size: 16px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
     font-family: "Roboto", sans-serif;
-    /* font-family: "Noto Sans", sans-serif; */
     font-weight: 500;
     padding: 5px 20px 5px 20px;
   }
@@ -1076,8 +918,6 @@
     font-size: 16px;
     color: #000;
     font-family: "Poppins", sans-serif;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
     font-weight: 500;
   }
   .live-btn {
@@ -1087,9 +927,6 @@
     color: #fff;
     font-size: 14px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
     font-weight: 500;
     border-radius: 4px;
     width: 100%;
@@ -1111,26 +948,19 @@
   .aboutHeader {
     font-size: 1.5rem;
     font-weight: 600;
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Poppins", sans-serif;
     display: flex;
     align-items: center;
     justify-content: start;
-
     padding-bottom: 2px;
-    /* text-decoration: underline; */
-    /* font-family: "Noto Sans", sans-serif; */
   }
   /* works styles  */
 
   /* skill styles  */
   .skillBox {
     padding: 50px 0px;
-
     border-bottom: 1px solid black;
     font-family: "Poppins", sans-serif;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
     font-size: 24px;
     font-weight: 500;
     color: #000;
@@ -1158,7 +988,6 @@
     white-space: nowrap;
     display: flex;
     flex-wrap: nowrap;
-
     width: 100%;
   }
 
@@ -1169,8 +998,6 @@
     align-items: center;
     justify-content: center;
     letter-spacing: 1px;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
   }
 
@@ -1181,20 +1008,13 @@
 
     border-bottom: 1px solid black;
     font-family: "Poppins", sans-serif;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
     font-size: 24px;
     font-weight: 500;
     color: #000;
-
     width: 100%;
-
     justify-content: space-between;
-
     align-items: center;
-
     cursor: pointer;
-
     transition: all 0.2s;
   }
 
@@ -1217,8 +1037,6 @@
   .project h2 {
     margin: 0px;
     font-family: "Poppins", sans-serif;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
     font-size: 18px;
     font-weight: 500;
     color: #000;
@@ -1227,7 +1045,6 @@
 
   .project p {
     transition: all 0.4s;
-
     font-weight: 300;
   }
   /* modal styles  */
@@ -1262,6 +1079,7 @@
 
   .modal img {
     height: auto;
+    background-size: contain !important;
   }
 
   .cursor,
@@ -1291,15 +1109,11 @@
   .aboutHeader {
     font-size: 1.5rem;
     font-weight: 600;
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Poppins", sans-serif;
     display: flex;
     align-items: center;
     justify-content: start;
-
     padding-bottom: 2px;
-    /* text-decoration: underline; */
-    /* font-family: "Noto Sans", sans-serif; */
   }
   .aboutText {
     padding-bottom: 20px;
@@ -1318,8 +1132,6 @@
   .label-text {
     font-size: 16px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 500;
     display: flex;
@@ -1327,19 +1139,11 @@
     align-items: center;
     gap: 4px;
     margin-bottom: 4px;
-
-    /* position: absolute;
-    top: 15px;
-    left: 15px;
-    transition: top 0.3s;
-    pointer-events: none; */
   }
 
   .label-text span {
     font-size: 16px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 500;
   }
@@ -1349,8 +1153,6 @@
     border-radius: 4px;
     font-size: 16px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 500;
     outline: none;
@@ -1359,8 +1161,6 @@
   .input-feild::placeholder {
     font-size: 16px;
     color: #a7a0a0;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 300;
   }
@@ -1370,8 +1170,6 @@
     font-size: 16px;
     color: #000;
     border-radius: 4px;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 500;
     outline: none;
@@ -1381,8 +1179,6 @@
   .text-feild::placeholder {
     font-size: 16px;
     color: #a7a0a0;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 300;
   }
@@ -1392,8 +1188,6 @@
     color: #fff;
     font-size: 16px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 500;
     border-radius: 4px;
@@ -1414,18 +1208,13 @@
   .message-text {
     font-size: 18px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
     font-family: "Roboto", sans-serif;
-
-    /* font-family: "Noto Sans", sans-serif; */
     font-weight: 500;
   }
   .message-sub-text {
     font-size: 16px;
     color: #000;
     font-family: "Poppins", sans-serif;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
     font-weight: 500;
     padding: 5px 0px;
     cursor: pointer;
@@ -1442,8 +1231,6 @@
   .error-message {
     font-size: 14px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 500;
     margin-top: 4px;
@@ -1495,16 +1282,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* width: 750px; */
     margin: 0px auto;
     padding: 32px 10px;
   }
   .footer-text {
     color: #fff;
     font-family: "Poppins", sans-serif;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
-
     font-size: 20px;
     font-weight: 500;
     display: flex;
@@ -1545,8 +1328,6 @@
     font-weight: 400;
     margin: 48px auto 32px auto;
     font-family: "Poppins", sans-serif;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
   }
   .parallax {
     overflow: hidden;
@@ -1565,7 +1346,6 @@
     white-space: nowrap;
     display: flex;
     flex-wrap: nowrap;
-
     width: 100%;
   }
 
@@ -1576,8 +1356,6 @@
     align-items: center;
     justify-content: center;
     letter-spacing: 1px;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
   }
   /* footer styles  */
@@ -1605,27 +1383,7 @@
       cubic-bezier(0.97, 0.01, 0.36, 0.99);
     animation-duration: 7s;
   }
-  .overlayText {
-    position: relative;
-    font-family: "Noto Sans", sans-serif;
-    /* font-size: 5vw; */
-    /* animation: onOff 1s linear; */
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-weight: 600;
-    color: white;
 
-    animation: hideoverlayText 3s forwards;
-
-    /* background: linear-gradient(to right, #4d4d4d 0, white 10%, #4d4d4d 20%);
-    background-position: 0;
-    background-clip: text;
-    -webkit-text-fill-color: transparent; */
-    /* animation: shine 3s forwards;
-    -webkit-text-size-adjust: none; */
-    font-size: 20px;
-  }
   @keyframes hideafterEffects {
     0% {
       height: 100vh;
@@ -1708,28 +1466,12 @@
   .contactArrow {
     transform: rotate(-70deg);
   }
-  .navbar {
-    top: -200px;
-    animation: showNavbar 1s forwards;
-    animation-delay: var(--nav);
-  }
-
-  @keyframes showNavbar {
-    0% {
-      top: -200px;
-    }
-    100% {
-      top: 0px;
-    }
-  }
 
   .navbar ul li a {
     text-decoration: none;
     font-size: 18px;
     color: #000;
     font-weight: 500;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
   }
 
@@ -1764,6 +1506,8 @@
   .hover-underline-animation {
     position: relative;
     color: black;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
   }
 
   .hover-underline-animation:after {
@@ -1795,18 +1539,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    animation: showHero 1s forwards;
-    animation-delay: 1s;
-    opacity: 0;
-  }
-
-  @keyframes showHero {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
   }
   .hero1 {
     width: 32px;
@@ -1824,7 +1556,6 @@
     display: grid;
     place-content: center;
     height: 100%;
-    /* width: 60%; */
   }
 
   .mainName {
@@ -1832,9 +1563,7 @@
     font-size: 10rem;
     font-weight: 800;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
     line-height: 190px;
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
   }
   .heroIntroText {
@@ -1843,8 +1572,6 @@
     color: #000;
     font-family: "Poppins", sans-serif;
     width: 100%;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
   }
   .heroicons {
     margin-top: 25px;
@@ -1877,8 +1604,6 @@
     color: #000;
     border-radius: 4px;
     transition: 300ms ease-in-out;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
   }
   .heroBtnContact:hover {
     background: #000;
@@ -1890,7 +1615,6 @@
   /* aboutme styles  */
   .aboutme,
   .workssection {
-    /* height: 70vh; */
     width: 1024px;
     margin: 120px auto 0px auto;
     display: flex;
@@ -1900,15 +1624,11 @@
   .aboutHeader {
     font-size: 3rem;
     font-weight: 600;
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Poppins", sans-serif;
     display: flex;
     align-items: center;
     justify-content: start;
-
     padding-bottom: 2px;
-    /* text-decoration: underline; */
-    /* font-family: "Noto Sans", sans-serif; */
   }
   .aboutText {
     padding-bottom: 20px;
@@ -1932,6 +1652,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    object-fit: cover;
     transition: transform 400ms, filter 400ms ease-in-out;
     filter: grayscale(100%);
   }
@@ -1953,9 +1674,7 @@
     border-top: 2px solid black;
     font-size: 20px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
     font-family: "Roboto", sans-serif;
-    /* font-family: "Noto Sans", sans-serif; */
     font-weight: 500;
     padding: 5px 20px 5px 20px;
   }
@@ -1963,8 +1682,6 @@
     font-size: 20px;
     color: #000;
     font-family: "Poppins", sans-serif;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
     font-weight: 500;
   }
   .live-btn {
@@ -1974,9 +1691,6 @@
     color: #fff;
     font-size: 18px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
     font-weight: 500;
     border-radius: 4px;
     width: 100%;
@@ -1996,8 +1710,6 @@
   .label-text {
     font-size: 18px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 500;
     display: flex;
@@ -2005,19 +1717,11 @@
     align-items: center;
     gap: 4px;
     margin-bottom: 4px;
-
-    /* position: absolute;
-    top: 15px;
-    left: 15px;
-    transition: top 0.3s;
-    pointer-events: none; */
   }
 
   .label-text span {
     font-size: 18px;
     color: #ff0000;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 500;
   }
@@ -2027,8 +1731,6 @@
     border-radius: 4px;
     font-size: 18px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 500;
     outline: none;
@@ -2037,8 +1739,6 @@
   .input-feild::placeholder {
     font-size: 18px;
     color: #a7a0a0;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 300;
   }
@@ -2048,8 +1748,6 @@
     font-size: 18px;
     color: #000;
     border-radius: 4px;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 500;
     outline: none;
@@ -2059,8 +1757,6 @@
   .text-feild::placeholder {
     font-size: 18px;
     color: #a7a0a0;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 300;
   }
@@ -2070,8 +1766,6 @@
     color: #fff;
     font-size: 18px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 500;
     border-radius: 4px;
@@ -2091,18 +1785,13 @@
   .message-text {
     font-size: 18px;
     color: #000;
-    /* font-family: "Poppins", sans-serif; */
     font-family: "Roboto", sans-serif;
-
-    /* font-family: "Noto Sans", sans-serif; */
     font-weight: 500;
   }
   .message-sub-text {
     font-size: 16px;
     color: #000;
     font-family: "Poppins", sans-serif;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
     font-weight: 500;
     padding: 5px 0px;
     cursor: pointer;
@@ -2119,8 +1808,6 @@
   .error-message {
     font-size: 15px;
     color: #ff1e1e;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
     font-weight: 500;
     margin-top: 4px;
@@ -2180,9 +1867,6 @@
   .footer-text {
     color: #fff;
     font-family: "Poppins", sans-serif;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
-
     font-size: 24px;
     font-weight: 500;
     display: flex;
@@ -2223,8 +1907,6 @@
     font-weight: 400;
     margin: 48px auto 32px auto;
     font-family: "Poppins", sans-serif;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
   }
 
   /* footer styles  */
@@ -2275,8 +1957,6 @@
     align-items: center;
     justify-content: center;
     letter-spacing: 1px;
-    /* font-family: "Poppins", sans-serif; */
-    /* font-family: "Roboto", sans-serif; */
     font-family: "Noto Sans", sans-serif;
   }
 
@@ -2284,23 +1964,15 @@
   .project {
     display: flex;
     padding: 50px 0px;
-
     border-bottom: 1px solid black;
     font-family: "Poppins", sans-serif;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
     font-size: 24px;
     font-weight: 500;
     color: #000;
-
     width: 100%;
-
     justify-content: space-between;
-
     align-items: center;
-
     cursor: pointer;
-
     transition: all 0.2s;
   }
 
@@ -2323,8 +1995,6 @@
   .project h2 {
     margin: 0px;
     font-family: "Poppins", sans-serif;
-    /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Noto Sans", sans-serif; */
     font-size: 24px;
     font-weight: 500;
     color: #000;
@@ -2333,7 +2003,6 @@
 
   .project p {
     transition: all 0.4s;
-
     font-weight: 300;
   }
   /* modal styles  */
@@ -2393,4 +2062,3 @@
 
   /* modal styles  */
 }
-/* ============  */

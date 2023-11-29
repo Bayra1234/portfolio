@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 //icon
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import ShortTextRoundedIcon from "@mui/icons-material/ShortTextRounded";
-
 //icon
 import Drawer from "@mui/material/Drawer";
 //
@@ -10,42 +9,25 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 
 const Navbar = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [open, setOpen] = useState(false);
-
   const [menu, setMenu] = useState(false);
-  // let windowWidth = window.innerWidth;
-
-  let navLineStyle = {
-    "--nav": false ? "1s" : "7.2s",
-  };
 
   useEffect(() => {
-    // if (windowWidth > 768) {
-    //   setMenu(false);
-    // } else {
-    //   setTimeout(() => {
-    //     setOpen(true);
-    //   }, 5000);
-    // }
-
-    if (localStorage.getItem("isLoaded")) {
-      setIsLoaded(true);
-      navLineStyle = {
-        "--nav": false ? "1s" : "7.2s",
-      };
-    } else {
-      setIsLoaded(false);
-      navLineStyle = {
-        "--nav": false ? "1s" : "7.2s",
-      };
+    if (typeof window !== "undefined") {
+      if (window.innerWidth > 768) {
+        setMenu(false);
+      } else {
+        setTimeout(() => {
+          setOpen(true);
+        }, 20000);
+      }
     }
   }, []);
   return (
     <div>
       <div className="navbar">
-        <a href="/" className=" cursor-pointer">
-          <span className="stripes fade" style={navLineStyle}></span>
+        <a href="/" className=" cursor-pointer" aria-label="stripes fade">
+          <span className="stripes fade"></span>
         </a>
         <div
           className="block lg:hidden"
@@ -57,22 +39,34 @@ const Navbar = () => {
         </div>
         <ul>
           <li className="cta">
-            <a href="#" className="hover-underline-animation">
+            <a href="#" className="hover-underline-animation" aria-label="Home">
               Home
             </a>
           </li>
           <li className="cta">
-            <a href="#works" className="hover-underline-animation">
+            <a
+              href="#works"
+              className="hover-underline-animation"
+              aria-label="Works"
+            >
               Works
             </a>
           </li>
           <li className="cta">
-            <a href="#skills" className="hover-underline-animation">
+            <a
+              href="#skills"
+              className="hover-underline-animation"
+              aria-label="Skills"
+            >
               Skills
             </a>
           </li>
           <li className="cta">
-            <a href="#aboutme" className="hover-underline-animation">
+            <a
+              href="#aboutme"
+              className="hover-underline-animation"
+              aria-label="About-me"
+            >
               About-me
             </a>
           </li>
@@ -80,6 +74,7 @@ const Navbar = () => {
         <div className="cta hidden lg:flex">
           <a
             href="#contact"
+            aria-label="Contact"
             className="flex hover-underline-animation justify-center items-center navcontact"
           >
             Contact
@@ -131,7 +126,11 @@ const Navbar = () => {
                   setMenu(false);
                 }}
               >
-                <a href="#" className="hover-underline-animation">
+                <a
+                  href="#"
+                  className="hover-underline-animation"
+                  aria-label="Home"
+                >
                   Home
                 </a>
               </li>
@@ -141,7 +140,11 @@ const Navbar = () => {
                   setMenu(false);
                 }}
               >
-                <a href="#works" className="hover-underline-animation">
+                <a
+                  href="#works"
+                  className="hover-underline-animation"
+                  aria-label="Works"
+                >
                   Works
                 </a>
               </li>
@@ -151,7 +154,11 @@ const Navbar = () => {
                   setMenu(false);
                 }}
               >
-                <a href="#skills" className="hover-underline-animation">
+                <a
+                  href="#skills"
+                  className="hover-underline-animation"
+                  aria-label="Skills"
+                >
                   Skills
                 </a>
               </li>
@@ -161,22 +168,29 @@ const Navbar = () => {
                   setMenu(false);
                 }}
               >
-                <a href="#aboutme" className="hover-underline-animation">
+                <a
+                  href="#aboutme"
+                  className="hover-underline-animation"
+                  aria-label="About-me"
+                >
                   About-me
                 </a>
               </li>
+              <li
+                className={`${menu ? "showmyli" : ""}`}
+                onClick={() => {
+                  setMenu(false);
+                }}
+              >
+                <a
+                  href="#contact"
+                  className={`${menu ? "showmyli" : ""}`}
+                  aria-label="Contact"
+                >
+                  Contact
+                </a>
+              </li>
             </ul>
-            <a
-              onClick={() => {
-                setMenu(false);
-              }}
-              href="#contact"
-              className={`flex hover-underline-animation justify-center items-center navcontact ${
-                menu ? "contactani" : ""
-              }`}
-            >
-              Contact
-            </a>
           </div>
         </Drawer>
         {/* mobile navbar  */}
@@ -200,8 +214,8 @@ const Navbar = () => {
           </p>
           <DialogContent>
             <p className="whoops">
-              Hey, don't miss out the full experience take a peek at the desktop
-              view!
+              {` Hey, don't miss out the full experience take a peek at the desktop
+              view!`}
             </p>
           </DialogContent>
         </Dialog>
