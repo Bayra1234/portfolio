@@ -1,76 +1,9 @@
-import {
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-  useMotionValue,
-  useVelocity,
-  useAnimationFrame,
-} from "framer-motion";
-import { wrap } from "@motionone/utils";
-import { useRef } from "react";
-import StarIcon from "@mui/icons-material/Star";
+
 import MagneticGsap from "./MagneticGsap";
-
-function ParallaxText({ children, baseVelocity = 100 }) {
-  const baseX = useMotionValue(0);
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 400,
-  });
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
-    clamp: false,
-  });
-  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
-
-  const directionFactor = useRef(1);
-  useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * baseVelocity * (delta / 3000);
-    if (velocityFactor.get() < 0) {
-      directionFactor.current = -1;
-    } else if (velocityFactor.get() > 0) {
-      directionFactor.current = 1;
-    }
-
-    moveBy += directionFactor.current * moveBy * velocityFactor.get();
-
-    baseX.set(baseX.get() + moveBy);
-  });
-  return (
-    <div className="parallax">
-      <motion.div className="scroller" style={{ x }}>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-      </motion.div>
-    </div>
-  );
-}
 
 const Footer = () => {
   return (
     <div className="footerSection">
-      <section>
-        <ParallaxText baseVelocity={-5}>
-          Front end developer
-          <StarIcon sx={{ color: "white", fontSize: "55px" }} />
-        </ParallaxText>
-        <ParallaxText baseVelocity={5}>
-          Front end developer
-          <StarIcon sx={{ color: "white", fontSize: "55px" }} />
-        </ParallaxText>
-      </section>
       <div className="insideFooter">
         <div className="footer-div ">
           <div className="flex justify-between items-center lg:gap-[24px]">
@@ -78,12 +11,30 @@ const Footer = () => {
               <div className="flex gap-[24px] lg:gap-[24px] items-start flex-col">
                 <div className="footer-text">
                   <MagneticGsap>
-                    {" "}
                     <svg
-                      className="lg:mr-[20px]"
+                      className="md:mr-[10px] lg:mr-[20px] hidden lg:block"
                       xmlns="http://www.w3.org/2000/svg"
                       width="36"
                       height="36"
+                      viewBox="0 0 256 256"
+                    >
+                      <g
+                        fill="white"
+                        strokeMiterlimit="10"
+                        strokeWidth="0"
+                        transform="matrix(2.81 0 0 2.81 1.407 1.407)"
+                      >
+                        <path d="M45 90C20.187 90 0 69.813 0 45S20.187 0 45 0s45 20.187 45 45-20.187 45-45 45zm0-86C22.393 4 4 22.393 4 45s18.393 41 41 41 41-18.393 41-41S67.607 4 45 4z"></path>
+                        <circle cx="31" cy="35.55" r="5"></circle>
+                        <circle cx="59" cy="35.55" r="5"></circle>
+                        <path d="M45 69.345c-7.954 0-15.337-3.969-19.751-10.617a2 2 0 113.332-2.212c3.671 5.529 9.809 8.83 16.419 8.83 6.61 0 12.748-3.301 16.419-8.83a2 2 0 113.332 2.212C60.337 65.376 52.953 69.345 45 69.345z"></path>
+                      </g>
+                    </svg>
+                    <svg
+                      className="mr-[10px] lg:mr-[20px] block lg:hidden"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="26"
+                      height="26"
                       viewBox="0 0 256 256"
                     >
                       <g
@@ -104,6 +55,7 @@ const Footer = () => {
                 <a
                   href="mailto:sharan.kundapur@gmail.com"
                   className="footer-gmail"
+                  aria-label="sharan.kundapur@gmail.com"
                 >
                   sharan.kundapur@gmail.com
                 </a>
@@ -113,19 +65,30 @@ const Footer = () => {
           <div>
             <p className="media-text">Media</p>
             <div className="footer-media-svg flex gap-[8px] items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                fill="none"
-                viewBox="0 0 32 32"
+              <a
+                href="https://github.com/leoraptor"
+                target="_blank"
+                aria-label="https://github.com/leoraptor"
               >
-                <path
-                  fill="#ABB2BF"
-                  d="M15.5 6C9.699 6 5 10.588 5 16.253c0 4.537 3.006 8.369 7.18 9.727.524.09.721-.218.721-.487 0-.243-.013-1.05-.013-1.91-2.638.475-3.32-.627-3.53-1.204-.119-.295-.63-1.205-1.077-1.448-.367-.192-.892-.667-.013-.68.827-.012 1.418.744 1.614 1.051.946 1.551 2.455 1.116 3.059.846.091-.666.367-1.115.669-1.371-2.336-.256-4.777-1.14-4.777-5.062 0-1.115.406-2.038 1.076-2.756-.105-.256-.473-1.307.105-2.717 0 0 .88-.269 2.887 1.051a9.964 9.964 0 012.625-.346c.893 0 1.785.115 2.625.346 2.008-1.333 2.888-1.05 2.888-1.05.577 1.409.21 2.46.105 2.716.67.718 1.076 1.628 1.076 2.756 0 3.934-2.454 4.806-4.79 5.062.38.32.708.936.708 1.897 0 1.371-.013 2.473-.013 2.82 0 .268.197.589.722.486a10.5 10.5 0 005.179-3.74A10.105 10.105 0 0026 16.253C26 10.588 21.301 6 15.5 6z"
-                ></path>
-              </svg>
-              <a target="_blank" href="https://www.linkedin.com/in/sharan-js">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  fill="none"
+                  viewBox="0 0 32 32"
+                >
+                  <path
+                    fill="#ABB2BF"
+                    d="M15.5 6C9.699 6 5 10.588 5 16.253c0 4.537 3.006 8.369 7.18 9.727.524.09.721-.218.721-.487 0-.243-.013-1.05-.013-1.91-2.638.475-3.32-.627-3.53-1.204-.119-.295-.63-1.205-1.077-1.448-.367-.192-.892-.667-.013-.68.827-.012 1.418.744 1.614 1.051.946 1.551 2.455 1.116 3.059.846.091-.666.367-1.115.669-1.371-2.336-.256-4.777-1.14-4.777-5.062 0-1.115.406-2.038 1.076-2.756-.105-.256-.473-1.307.105-2.717 0 0 .88-.269 2.887 1.051a9.964 9.964 0 012.625-.346c.893 0 1.785.115 2.625.346 2.008-1.333 2.888-1.05 2.888-1.05.577 1.409.21 2.46.105 2.716.67.718 1.076 1.628 1.076 2.756 0 3.934-2.454 4.806-4.79 5.062.38.32.708.936.708 1.897 0 1.371-.013 2.473-.013 2.82 0 .268.197.589.722.486a10.5 10.5 0 005.179-3.74A10.105 10.105 0 0026 16.253C26 10.588 21.301 6 15.5 6z"
+                  ></path>
+                </svg>
+              </a>
+
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/in/sharan-js"
+                aria-label="https://www.linkedin.com/in/sharan-js"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="28"
@@ -144,6 +107,7 @@ const Footer = () => {
                 href="https://wa.me/919380393651/?text=Hi Sharan,"
                 target="_blank"
                 className="ml-1"
+                aria-label="https://wa.me/919380393651/?text=Hi Sharan,"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +125,9 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <p className="copyRight">{`© Copyright ${new Date().getFullYear()}. Made by Sharan`}</p>
+        <p className="copyRight relative">
+          {`© Copyright ${new Date().getFullYear()}. Made by Sharan`}{" "}
+        </p>
       </div>
     </div>
   );

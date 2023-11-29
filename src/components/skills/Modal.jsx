@@ -19,18 +19,11 @@ const scaleAnimation = {
   },
 };
 
-export default function index({ modal, projects }) {
+export default function Modal({ modal, projects }) {
   const { active, index } = modal;
-
   const modalContainer = useRef(null);
-
   const cursor = useRef(null);
-
-  const cursorLabel = useRef(null);
-
   useEffect(() => {
-    //Move Container
-
     let xMoveContainer = gsap.quickTo(modalContainer.current, "left", {
       duration: 0.8,
       ease: "power3",
@@ -42,7 +35,6 @@ export default function index({ modal, projects }) {
     });
 
     //Move cursor
-
     let xMoveCursor = gsap.quickTo(cursor.current, "left", {
       duration: 0.5,
       ease: "power3",
@@ -52,18 +44,6 @@ export default function index({ modal, projects }) {
       duration: 0.5,
       ease: "power3",
     });
-
-    //Move cursor label
-
-    // let xMoveCursorLabel = gsap.quickTo(cursorLabel.current, "left", {
-    //   duration: 0.45,
-    //   ease: "power3",
-    // });
-
-    // let yMoveCursorLabel = gsap.quickTo(cursorLabel.current, "top", {
-    //   duration: 0.45,
-    //   ease: "power3",
-    // });
 
     window.addEventListener("mousemove", (e) => {
       const { pageX, pageY } = e;
@@ -75,10 +55,6 @@ export default function index({ modal, projects }) {
       xMoveCursor(pageX);
 
       yMoveCursor(pageY);
-
-      //   xMoveCursorLabel(pageX);
-
-      //   yMoveCursorLabel(pageY);
     });
   }, []);
 
@@ -106,22 +82,6 @@ export default function index({ modal, projects }) {
           })}
         </div>
       </motion.div>
-      {/* <motion.div
-        ref={cursor}
-        className="cursor"
-        variants={scaleAnimation}
-        initial="initial"
-        animate={active ? "enter" : "closed"}
-      ></motion.div> */}
-      {/* <motion.div
-        ref={cursorLabel}
-        className="cursorLabel"
-        variants={scaleAnimation}
-        initial="initial"
-        animate={active ? "enter" : "closed"}
-      >
-        View
-      </motion.div> */}
     </>
   );
 }
