@@ -1,36 +1,80 @@
+import { useState, useEffect } from "react";
+//icon
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import ShortTextRoundedIcon from "@mui/icons-material/ShortTextRounded";
+//icon
+import Drawer from "@mui/material/Drawer";
+//
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  const [menu, setMenu] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth > 768) {
+        setMenu(false);
+      } else {
+        setTimeout(() => {
+          setOpen(true);
+        }, 20000);
+      }
+    }
+  }, []);
   return (
     <div>
       <div className="navbar">
-        <a href="/" className=" cursor-pointer">
+        <a href="/" className=" cursor-pointer" aria-label="stripes fade">
           <span className="stripes fade"></span>
         </a>
+        <div
+          className="block lg:hidden"
+          onClick={() => {
+            setMenu(true);
+          }}
+        >
+          <ShortTextRoundedIcon sx={{ fontSize: "40px" }} />
+        </div>
         <ul>
           <li className="cta">
-            <a href="" className="hover-underline-animation">
+            <a href="#" className="hover-underline-animation" aria-label="Home">
               Home
             </a>
           </li>
           <li className="cta">
-            <a href="#works" className="hover-underline-animation">
+            <a
+              href="#works"
+              className="hover-underline-animation"
+              aria-label="Works"
+            >
               Works
             </a>
           </li>
           <li className="cta">
-            <a href="" className="hover-underline-animation">
+            <a
+              href="#skills"
+              className="hover-underline-animation"
+              aria-label="Skills"
+            >
               Skills
             </a>
           </li>
           <li className="cta">
-            <a href="#aboutme" className="hover-underline-animation">
+            <a
+              href="#aboutme"
+              className="hover-underline-animation"
+              aria-label="About-me"
+            >
               About-me
             </a>
           </li>
         </ul>
-        <div className="cta">
-          {" "}
+        <div className="cta hidden lg:flex">
           <a
             href="#contact"
+            aria-label="Contact"
             className="flex hover-underline-animation justify-center items-center navcontact"
           >
             Contact
@@ -50,6 +94,131 @@ const Navbar = () => {
             </svg>
           </a>
         </div>
+
+        {/* mobile navbar  */}
+        <Drawer
+          anchor={"right"}
+          open={menu}
+          onClose={() => {
+            setMenu(false);
+          }}
+          PaperProps={{
+            sx: {
+              // backgroundColor: "transparent",
+              boxShadow: "none",
+              width: "90%",
+            },
+          }}
+        >
+          <div className="mobileNavbar">
+            <div className="ofmob">
+              <CloseRoundedIcon
+                sx={{ color: "black", fontSize: "40px" }}
+                onClick={() => {
+                  setMenu(false);
+                }}
+              />
+            </div>
+            <ul>
+              <li
+                className={`${menu ? "showmyli" : ""}`}
+                onClick={() => {
+                  setMenu(false);
+                }}
+              >
+                <a
+                  href="#"
+                  className="hover-underline-animation"
+                  aria-label="Home"
+                >
+                  Home
+                </a>
+              </li>
+              <li
+                className={`${menu ? "showmyli" : ""}`}
+                onClick={() => {
+                  setMenu(false);
+                }}
+              >
+                <a
+                  href="#works"
+                  className="hover-underline-animation"
+                  aria-label="Works"
+                >
+                  Works
+                </a>
+              </li>
+              <li
+                className={`${menu ? "showmyli" : ""}`}
+                onClick={() => {
+                  setMenu(false);
+                }}
+              >
+                <a
+                  href="#skills"
+                  className="hover-underline-animation"
+                  aria-label="Skills"
+                >
+                  Skills
+                </a>
+              </li>
+              <li
+                className={`${menu ? "showmyli" : ""}`}
+                onClick={() => {
+                  setMenu(false);
+                }}
+              >
+                <a
+                  href="#aboutme"
+                  className="hover-underline-animation"
+                  aria-label="About-me"
+                >
+                  About-me
+                </a>
+              </li>
+              <li
+                className={`${menu ? "showmyli" : ""}`}
+                onClick={() => {
+                  setMenu(false);
+                }}
+              >
+                <a
+                  href="#contact"
+                  className={`${menu ? "showmyli" : ""}`}
+                  aria-label="Contact"
+                >
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+        </Drawer>
+        {/* mobile navbar  */}
+
+        {/* pop up  */}
+        <Dialog
+          open={open}
+          onClose={() => {
+            setOpen(false);
+          }}
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <p className="flex justify-between items-center px-[24px] pt-[20px] pb-[5px] border-t-[5px] border-t-black ">
+            <div className="whoopsM">Message </div>
+            <CloseRoundedIcon
+              sx={{ color: "black", fontSize: "30px", cursor: "pointer" }}
+              onClick={() => {
+                setOpen(false);
+              }}
+            />
+          </p>
+          <DialogContent>
+            <p className="whoops">
+              {` Hey, don't miss out the full experience take a peek at the desktop
+              view!`}
+            </p>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
