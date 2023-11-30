@@ -54,9 +54,9 @@
   top: 0;
   left: 0;
   z-index: 999;
-  animation: hideafterEffects 4s alternate forwards
+  animation: hideafterEffects alternate forwards
     cubic-bezier(0.97, 0.01, 0.36, 0.99);
-  animation-duration: 7s;
+  animation-duration: 5.5s;
 }
 
 @keyframes hideafterEffects {
@@ -74,23 +74,25 @@
 }
 
 .barBottom {
-  height: 4px;
+  height: 5px;
   width: 177px;
+  border-radius: 2px;
   background: rgb(146, 144, 144);
   position: relative;
-  animation: hideoverlayText 3s forwards;
+  animation: hideoverlayText 2.2s forwards;
 }
 .barBottom::before {
   content: "";
   display: block;
+  border-radius: 2px;
   position: absolute;
   top: 0;
   left: 0;
   width: 0px;
   z-index: 2;
   background: white;
-  height: 4px;
-  animation: increaseWidth 3s forwards;
+  height: 5px;
+  animation: increaseWidth 2.2s forwards;
   animation-delay: 100ms;
 }
 
@@ -774,9 +776,9 @@
     top: 0;
     left: 0;
     z-index: 999;
-    animation: hideafterEffects 4s alternate forwards
+    animation: hideafterEffects alternate forwards
       cubic-bezier(0.97, 0.01, 0.36, 0.99);
-    animation-duration: 7s;
+    animation-duration: 5.5s;
   }
   @keyframes hideafterEffects {
     0% {
@@ -1379,9 +1381,9 @@
     top: 0;
     left: 0;
     z-index: 999;
-    animation: hideafterEffects 4s alternate forwards
+    animation: hideafterEffects alternate forwards
       cubic-bezier(0.97, 0.01, 0.36, 0.99);
-    animation-duration: 7s;
+    animation-duration: 5.5s;
   }
 
   @keyframes hideafterEffects {
