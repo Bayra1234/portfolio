@@ -71,9 +71,15 @@ const Hero = () => {
           <a href="#contact" className="heroBtnContact" aria-label="Contact">
             Contact
           </a>
-          <div>
-            <button className="heroBtnContact">Resume</button>
-          </div>
+
+          <a
+            className="heroBtnContact"
+            aria-label="Resume"
+            href="Sharan_Resume.pdf"
+            download="Sharan_Resume.pdf"
+          >
+            Resume
+          </a>
         </div>
       </div>
     </div>
