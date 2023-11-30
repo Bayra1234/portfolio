@@ -68,6 +68,7 @@ const Hero = () => {
           </a>
         </div>
         <div className="heroBtnSection">
+          
           <a href="#contact" className="heroBtnContact" aria-label="Contact">
             Contact
           </a>
