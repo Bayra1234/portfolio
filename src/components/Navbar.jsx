@@ -7,6 +7,7 @@ import Drawer from "@mui/material/Drawer";
 //
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
+import Image from "next/image";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -27,7 +28,12 @@ const Navbar = () => {
     <div>
       <div className="navbar">
         <a href="/" className=" cursor-pointer" aria-label="stripes fade">
-          <span className="stripes fade"></span>
+          <img src="pro.png" 
+          alt="" 
+          width="50px"
+          height="50px"
+          className="rounded-full"
+          />
         </a>
         <div
           className="block lg:hidden"

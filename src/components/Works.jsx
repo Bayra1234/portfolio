@@ -10,7 +10,7 @@ const Works = () => {
       id: 0,
       imagePath:
         "https://images.pexels.com/photos/3536276/pexels-photo-3536276.jpeg?auto=compress&cs=tinysrgb&w=600",
-      techStack: "Next js, Node js, Mongo DB",
+      techStack: "Next js, Mysql",
       title: "Supper car dealership",
       isDisabled: true,
       github: "",
@@ -31,7 +31,7 @@ const Works = () => {
       techStack: "Next js, Node js",
       title: "You’re using it right now",
       isDisabled: false,
-      github: "https://github.com/leoraptor/sharanweb",
+      github: "https://github.com/Bayra1234/portfolio",
     },
   ];
   const [observerVisible, setObserverVisible] = useState(false);

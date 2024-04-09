@@ -434,7 +434,7 @@
   margin-top: 25px;
   border: 2px solid black;
   color: #fff;
-  font-size: 18px;
+  font-size: 14px;
   color: #000;
   font-weight: 500;
   border-radius: 4px;
@@ -707,13 +707,6 @@
   font-weight: 500;
   margin-bottom: 12px;
   margin-left: 6px;
-}
-.footer-media-svg svg path {
-  transition: 300ms ease-in;
-  cursor: pointer;
-}
-.footer-media-svg svg:hover path {
-  fill: white;
 }
 .copyRight {
   color: #abb2bf;
@@ -1314,13 +1307,6 @@
     margin-bottom: 12px;
     margin-left: 6px;
   }
-  .footer-media-svg svg path {
-    transition: 300ms ease-in;
-    cursor: pointer;
-  }
-  .footer-media-svg svg:hover path {
-    fill: white;
-  }
   .copyRight {
     color: #abb2bf;
     display: flex;
@@ -1892,13 +1878,6 @@
     font-weight: 500;
     margin-bottom: 12px;
     margin-left: 6px;
-  }
-  .footer-media-svg svg path {
-    transition: 300ms ease-in;
-    cursor: pointer;
-  }
-  .footer-media-svg svg:hover path {
-    fill: white;
   }
   .copyRight {
     color: #abb2bf;
